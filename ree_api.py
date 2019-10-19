@@ -9,7 +9,7 @@ date_format ='%Y-%m-%d'
 cacheFolder = './cache'
 
 class ReeIndicatorAPI:
-    def read(self, inputs:Input):
+    def read(self, inputs:Input, forceDownload:bool):
         variableID     = inputs.variableID
         start_date_obj = inputs.start_date_obj
         end_date_obj   = inputs.end_date_obj
@@ -17,7 +17,7 @@ class ReeIndicatorAPI:
 
         fileName = self.generateFileName(variableID, start_date_obj, end_date_obj)
 
-        if not self.isCached(fileName):
+        if not self.isCached(fileName) or forceDownload:
             start_date = start_date_obj.strftime(date_format)
             end_date   = end_date_obj.strftime(date_format)
 
