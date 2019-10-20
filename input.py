@@ -1,14 +1,14 @@
 from datetime import datetime, timedelta
 
 class Input:
-    def __init__(self,start_date_obj:datetime, end_date_obj:datetime, variableID:int, personal_token:str,totalDays:float):
+    def __init__(self,start_date_obj:datetime, end_date_obj:datetime, indicatorID:int, apiToken:str,totalDays:float):
         self.start_date_obj = start_date_obj
         self.end_date_obj   = end_date_obj
-        self.variableID     = variableID
-        self.personal_token = personal_token
+        self.indicatorID    = indicatorID
+        self.apiToken       = apiToken
         self.totalDays      = totalDays
 
-def validateInputs(start_date:str, end_date:str, variableID:int, personal_token:str):
+def validateInputs(start_date:str, end_date:str, indicatorID:int, apiToken:str):
     # Check that input arguments are valid
     date_format ='%Y-%m-%d'
 
@@ -29,15 +29,9 @@ def validateInputs(start_date:str, end_date:str, variableID:int, personal_token:
         exit()
 
     try:
-        assert type(variableID) == int
+        assert type(indicatorID) == int
     except AssertionError as e:
-        e.args += ('Format error:',' Please input an integer as variableID')
-        raise
-
-    try:
-        assert type(personal_token) == str
-    except AssertionError as e:
-        e.args += ('Format error:',' Please input a string as personal_token')
+        e.args += ('Format error:',' Please input an integer as indicatorID')
         raise
 
     # Compute total time of the sampling
@@ -45,4 +39,4 @@ def validateInputs(start_date:str, end_date:str, variableID:int, personal_token:
     totalDays = totalTime.days
 
     # If validation is OK return
-    return Input(start_date_obj, end_date_obj, variableID, personal_token,totalDays)
+    return Input(start_date_obj, end_date_obj, indicatorID, apiToken, totalDays)
