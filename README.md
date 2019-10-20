@@ -24,7 +24,7 @@ optional arguments:
 ```
 # Code strucutre
 
-The main file is ```main.py```. The code is sctructured as follows:
+The entrypoint is ```main.py```. The code is sctructured as follows:
 
 ## Inputs
 
