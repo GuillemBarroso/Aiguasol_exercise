@@ -2,12 +2,11 @@
 from typing              import List
 from scipy.fftpack       import fft
 from datetime            import datetime
-from nptyping            import Array
 import matplotlib.pyplot as plt
 import numpy             as np
 
 class FFT:
-    def compute(self, x:Array, y:Array, totalDays:float):
+    def compute(self, x, y, totalDays:float):
         # Average timeStep assuming equally-spaced sampling
         numData  = len(y)
         timeStep = totalDays/numData

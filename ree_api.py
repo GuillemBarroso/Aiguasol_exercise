@@ -4,7 +4,6 @@ from input          import Input
 from os import path, mkdir
 import json
 
-
 date_format ='%Y-%m-%d'
 cacheFolder = './cache'
 
