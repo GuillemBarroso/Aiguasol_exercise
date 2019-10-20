@@ -18,7 +18,9 @@ class FFT:
 
     def plot(self, x, y, xf, yf):
         fig, axs = plt.subplots(2, 1)
+        fig.suptitle('FFT of data from ree API', fontsize=14)
         axs[0].plot(x,y)
+        axs[0].set_title('Time domain')
         axs[0].set_xlabel('Time [days]')
         axs[0].set_ylabel('Real demand [MW]')
         axs[0].grid(True)
@@ -26,9 +28,11 @@ class FFT:
         axs[1].plot(xf,yf)
         axs[1].set_xlim(0, 6)
         axs[1].set_ylim(0, 20000)
+        axs[1].set_title('Frequency domain')
         axs[1].set_xlabel('Frequency [Hz]')
         axs[1].set_ylabel('Amplitude')
         axs[1].grid(True)
 
         fig.tight_layout()
+        fig.subplots_adjust(top=0.88)
         plt.show()
