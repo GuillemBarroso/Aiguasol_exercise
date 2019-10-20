@@ -78,4 +78,4 @@ Only one input is always rquried (```--apiToken```) and thus, the user has two o
 2. Execute main.py using ```--apiToken``` and ```--force``` as inputs:
 ```pipenv run python main.py --apiToken 652647858608a4559e7016t3168644efb1b70880313257d4a3ac6cd93e2ad611 --force```
 
-Note that the token displayed in this section is NOT a valid token. Own personal_token must be used.
+Note that the token displayed in this section is NOT a valid token. Own personal token must be used.
