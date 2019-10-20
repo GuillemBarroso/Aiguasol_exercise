@@ -1,17 +1,16 @@
 # Aiguasol_exercise
 
-# Python version
-Python 3.7.4
+# Python version used 3.7.4
 
-# Recommended use of the code
-I have used a virtual environment with pipenv in order to run the code. It should also work with pip.
+# Recommended depency management
+I have used a virtual environment with pipenv in order to run the code. To download, see https://medium.com/@mahmudahsan/how-to-use-python-pipenv-in-mac-and-windows-1c6dc87b403e. 
 
-# Download pipenv
+It should also work with pip.
 
-# install required libraries
-pipenv install -r requirements.txt
+## Install required libraries
+```pipenv install -r requirements.txt```
 
-# help command for arguments of main.py
+# Help command for arguments of main.py
 ```pipenv run python main.py -h```
 ```
 usage: main.py [-h] [--apiToken APITOKEN] [--force]
@@ -23,9 +22,36 @@ optional arguments:
   --apiToken APITOKEN  API personal_token
   --force              Force download
 ```
-# how to run
-pipenv run python main.py --apiToken personal_token
+# Code strucutre
+
+The main file is ```main.py```. The code is sctructured as follows:
+
+## Inputs
+
+* Config inputs
+  * ```apiToken```: valid personal token. Send an email to consultasios@ree.es to request one.
+  * ```force```: if existing, forces to download data from ree API regardless of file system cache, see cache section in ReeIndicatorAPI.
+
+* Hardcoded inputs
+  * indicatorID: indicator ID of interest from ree API
+  * start_date: begining of the time series
+  * end_date: end of the time series
+  
+## Input validation
+  1. ```start_date```: check correct format ('YYYY-MM-DD')
+  2. ```end_date```: check correct format ('YYYY-MM-DD')
+  3. ```variableID```: check is integer
+  
+## ree API request
+
+  * ReeIndicatorAPI: first checks if there is cached data. If so, loads it. If not calls ree API, downloads and writes file. 
+  * Cache: manages the cache calls.
+  
+## FFT computation
+
+
+```pipenv run python main.py --apiToken personal_token --force```
 
 # example
 pipenv run python main.py --apiToken 652647858608a4559e7016t3168644efb1b70880313257d4a3ac6cd93e2ad611
-pipenv run python main.py --apiToken 652647858608a4559e7016t3168644efb1b70880313257d4a3ac6cd93e2ad611 -f # force
+pipenv run python main.py --apiToken 652647858608a4559e7016t3168644efb1b70880313257d4a3ac6cd93e2ad611 --force
