@@ -1,4 +1,4 @@
-# Aiguasol_exercise
+# ***Aiguasol_exercise***
 
 # Python version used 3.7.4
 
@@ -8,6 +8,8 @@ I have used a virtual environment with pipenv in order to run the code. To downl
 It should also work with pip.
 
 ## Install required libraries
+Libraries required are stated in requirements.txt. To install use
+
 ```pipenv install -r requirements.txt```
 
 # Help command for arguments of main.py
@@ -24,7 +26,11 @@ optional arguments:
 ```
 # Code strucutre
 
-The entrypoint is ```main.py```. The code is sctructured as follows:
+The entrypoint is ```main.py```. To execute in pipenv environment use 
+
+```pipenv run python main.py --apiToken personal_token --force```
+
+The code is sctructured as follows:
 
 ## Inputs
 
@@ -42,16 +48,24 @@ The entrypoint is ```main.py```. The code is sctructured as follows:
   2. ```end_date```: check correct format ('YYYY-MM-DD')
   3. ```variableID```: check is integer
   
-## ree API request
+## Ree API request
 
-  * ReeIndicatorAPI: first checks if there is cached data. If so, loads it. If not calls ree API, downloads and writes file. 
-  * Cache: manages the cache calls.
+  * ```ReeIndicatorAPI```: first checks if there is cached data. If so, loads it. If not calls ree API, downloads and writes file. 
+  * ```Cache```: manages the cache calls.
   
 ## FFT computation
+  * ```FFT```: Computes fast fourier transform (FFT) of a certain signal. 
+    * ```FFT().compute```: Three inputs are required, ```x``` and ```y``` data plus the total time of the time-series ```totalDays```.
+    * ```FFT().plot```: Plots time-domain data (```x```,```y```) and frequency-domain data (```xf```,```yf```).
+    
+# Testing of FFT computation
+A test of the FFT computation is available as
 
 
-```pipenv run python main.py --apiToken personal_token --force```
 
-# example
-pipenv run python main.py --apiToken 652647858608a4559e7016t3168644efb1b70880313257d4a3ac6cd93e2ad611
-pipenv run python main.py --apiToken 652647858608a4559e7016t3168644efb1b70880313257d4a3ac6cd93e2ad611 --force
+
+# Example
+
+```pipenv run python main.py --apiToken 652647858608a4559e7016t3168644efb1b70880313257d4a3ac6cd93e2ad611```
+
+```pipenv run python main.py --apiToken 652647858608a4559e7016t3168644efb1b70880313257d4a3ac6cd93e2ad611 --force```
