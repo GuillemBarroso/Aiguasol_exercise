@@ -1,30 +1,29 @@
 #matplotlib inline
 from typing              import List
-from scipy.fftpack       import fft, fftfreq
+from scipy.fftpack       import fft
 from datetime            import datetime
-import numpy             as np
+from nptyping            import Array
 import matplotlib.pyplot as plt
+import numpy             as np
 
 class FFT:
-    def compute(self, TDvalues:List[int], dates:List[str], totalDays):
+    def compute(self, x:Array, y:Array, totalDays:float):
         # Average timeStep assuming equally-spaced sampling
-        numData  = len(dates)
+        numData  = len(y)
         timeStep = totalDays/numData
-        x        = np.linspace(0.0, totalDays, numData)
-        y        = np.array(TDvalues)
+        xf       = np.linspace(0.0, 1.0/(2.0*timeStep), numData//2)
+        yAux     = fft(y)
+        yf       = 2.0/numData * np.abs(yAux[0:numData//2])
+        return x, y, xf, yf
 
-        xf     = np.linspace(0.0, 1.0/(2.0*timeStep), numData/2)
-        yf     = fft(y)
-        yfPlot = 2.0/numData * np.abs(yf[:numData//2])
-
-        # PLOT
+    def plot(self, x, y, xf, yf):
         fig, axs = plt.subplots(2, 1)
         axs[0].plot(x,y)
         axs[0].set_xlabel('Time [days]')
         axs[0].set_ylabel('Real demand [MW]')
         axs[0].grid(True)
 
-        axs[1].plot(xf,yfPlot)
+        axs[1].plot(xf,yf)
         axs[1].set_xlim(0, 6)
         axs[1].set_ylim(0, 20000)
         axs[1].set_xlabel('Frequency [Hz]')
