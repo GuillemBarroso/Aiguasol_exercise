@@ -36,7 +36,7 @@ The code is sctructured as follows:
 
 * Config inputs
   * ```apiToken```: valid personal token. Send an email to consultasios@ree.es to request one.
-  * ```force```: if existing, forces to download data from ree API regardless of file system cache, see cache section in ReeIndicatorAPI.
+  * ```force```: if existing, forces to download data from ree API regardless of file system cache, see ```Cache()``` class in **Ree API request**.
 
 * Hardcoded inputs
   * indicatorID: indicator ID of interest from ree API
@@ -50,8 +50,8 @@ The code is sctructured as follows:
   
 ## Ree API request
 
-  * ```ReeIndicatorAPI```: first checks if there is cached data. If so, loads it. If not calls ree API, downloads and writes file. 
-  * ```Cache```: manages the cache calls.
+  * ```ReeIndicatorAPI()```: first checks if there is cached data. If so, loads it. If not calls ree API, downloads and writes file. 
+  * ```Cache()```: manages the cache calls.
   
 ## FFT computation
   * ```FFT```: Computes fast fourier transform (FFT) of a certain signal. 
@@ -59,13 +59,23 @@ The code is sctructured as follows:
     * ```FFT().plot```: Plots time-domain data (```x```,```y```) and frequency-domain data (```xf```,```yf```).
     
 # Testing of FFT computation
-A test of the FFT computation is available as
+A test of the FFT computation is available:
+
+```pipenv run python testFFT.ty```
+
+It computes a simple problem with manufactured data: y(x) = sin(50(2pi)x) + 0.5sin(80(2pi)x)
+
+This script computes the FFT of y(x) and plots both, the time domain and frequency domain series. It is clear from the figure that the two excited frequencies are 50 and 80 Hz, which appear in the manufactured equation y(x). This fact suggests that the FFT implementation can be validated. Please note that this test only validates ```FFT().compute```.
 
 
+# Code execution examples
 
+Only one input is always rquried (```--apiToken```) and thus, the user has two options to execute the code:
 
-# Example
-
+1. Execute main.py only using ```--apiToken``` as input:
 ```pipenv run python main.py --apiToken 652647858608a4559e7016t3168644efb1b70880313257d4a3ac6cd93e2ad611```
 
+2. Execute main.py using ```--apiToken``` and ```--force``` as inputs:
 ```pipenv run python main.py --apiToken 652647858608a4559e7016t3168644efb1b70880313257d4a3ac6cd93e2ad611 --force```
+
+Note that the token displayed in this section is NOT a valid token. Own personal_token must be used.
