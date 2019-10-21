@@ -25,7 +25,7 @@ class FFT:
         axs[0].grid(True)
 
         axs[1].plot(xf,yf)
-        axs[1].set_xlim(0, 6)
+        axs[1].set_xlim(0, 10)
         axs[1].set_ylim(0, 20000)
         axs[1].set_title('Frequency domain: FFT of raw signal')
         axs[1].set_xlabel('Frequency [1/day]')
@@ -33,14 +33,14 @@ class FFT:
         axs[1].grid(True)
 
         axs[2].plot(xf,yNoPeak)
-        axs[2].set_xlim(0, 6)
+        axs[2].set_xlim(0, 10)
         axs[2].set_title('Frequency domain: FFT of y = y - mean(y)')
         axs[2].set_xlabel('Frequency [1/day]')
         axs[2].set_ylabel('Amplitude')
         axs[2].grid(True)
 
         axs[3].plot(xf,yClean)
-        axs[3].set_xlim(0, 6)
+        axs[3].set_xlim(0, 10)
         axs[3].set_title('Frequency domain: FFT of y = y*window')
         axs[3].set_xlabel('Frequency [1/day]')
         axs[3].set_ylabel('Amplitude')

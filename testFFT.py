@@ -14,11 +14,7 @@ y = np.sin(50.0 * 2.0*np.pi*x) + 0.5*np.sin(80.0 * 2.0*np.pi*x)
 fft          = FFT()
 x, y, xf, yf = fft.compute(x, y, T*N)
 
-# Plot FFT, computed using FFT().compute
-# plt.plot(xf, yf)
-# plt.grid()
-# plt.show()
-
+# Plot
 fig, axs = plt.subplots(2, 1)
 fig.suptitle('Test problem: $y(x) = sin(50*2*pi*x) + 0.5*sin(80*2*pi*x)$', fontsize=14)
 axs[0].plot(x,y)
@@ -33,8 +29,7 @@ axs[1].set_xlabel('Frequency [Hz]')
 axs[1].set_ylabel('Amplitude')
 axs[1].grid(True)
 
-plt.savefig('outputImage_testFFT.png')
-
 fig.tight_layout()
 fig.subplots_adjust(top=0.88)
+plt.savefig('outputImage_testFFT.png')
 plt.show()
