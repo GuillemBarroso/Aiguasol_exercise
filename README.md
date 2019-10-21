@@ -93,6 +93,6 @@ After executing ```main.py```, the code generates the following output image
 1. Plot of the raw signal obtained from ree API against the measured days.
 2. Plot of the FFT of the raw signal.
 3. Plot of the FFT of the raw signal subtracting its mean value. This helps removing the first peak at frequency = 0. 
-3. Plot of the FFT of the clean signal. A clean signal is obtained by using a window function (in this particular case the Hanning function). It is supposed to remove the noise in the raw signal, although it does not suppose a great improvement.
+4. Plot of the FFT of the clean signal. A clean signal is obtained by using a window function (in this particular case the Hanning function). It is supposed to remove the noise in the raw signal, although it does not suppose a great improvement.
 
-From the figure above it can be observed that the main repeated patern in the raw signal occurs per day, see the spike in frequency = 1 day^(-1).
+From the figure above it can be observed that the main repeated patern in the raw signal occurs per day, see the spike in frequency = 1 day^(-1). The small frequencies with lower amplitude may be associated to the raw signal noice. In an attempt to reduce the noice, a window function has been implemented with no great success, observing similar FFT results in plots 3 and 4. 
