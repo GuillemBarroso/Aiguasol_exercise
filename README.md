@@ -63,7 +63,9 @@ A test of the FFT computation is available:
 
 ```pipenv run python testFFT.ty```
 
-It computes a simple problem with manufactured data: y(x) = sin(50(2pi)x) + 0.5sin(80(2pi)x)
+It computes a simple problem with manufactured data: y(x) = sin(50(2pi)x) + 0.5sin(80(2pi)x). The output is the following image
+
+![outputImage_testFFT](/outputImage_testFFT.png)
 
 This script computes the FFT of y(x) and plots both, the time domain and frequency domain series. It is clear from the figure that the two excited frequencies are 50 and 80 Hz, which appear in the manufactured equation y(x). This fact suggests that the FFT implementation can be validated. Please note that this test only validates ```FFT().compute```.
 
@@ -81,3 +83,9 @@ The user has two options to execute the code:
 ```pipenv run python main.py --apiToken 652647858608a4559e7016t3168644efb1b70880313257d4a3ac6cd93e2ad611 --force```
 
 Note that the token displayed in this section is NOT a valid token. Own personal token must be used.
+
+# Results
+
+After executing ```main.py```, the code generates the following output image
+
+![outputImage](/outputImage.png)
