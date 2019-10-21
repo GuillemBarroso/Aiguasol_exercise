@@ -15,8 +15,8 @@ class FFT:
         yf       = 2.0/numData * np.abs(yAux[0:numData//2])
         return x, y, xf, yf
 
-    def plot(self, x, y, xf, yf):
-        fig, axs = plt.subplots(2, 1)
+    def plot(self, x, y, xf, yf, yNoPeak, yClean):
+        fig, axs = plt.subplots(4, 1,figsize=(8,11))
         fig.suptitle('FFT of data from ree API', fontsize=14)
         axs[0].plot(x,y)
         axs[0].set_title('Time domain')
@@ -27,11 +27,27 @@ class FFT:
         axs[1].plot(xf,yf)
         axs[1].set_xlim(0, 6)
         axs[1].set_ylim(0, 20000)
-        axs[1].set_title('Frequency domain')
-        axs[1].set_xlabel('Frequency [Hz]')
+        axs[1].set_title('Frequency domain: FFT of raw signal')
+        axs[1].set_xlabel('Frequency [1/day]')
         axs[1].set_ylabel('Amplitude')
         axs[1].grid(True)
 
+        axs[2].plot(xf,yNoPeak)
+        axs[2].set_xlim(0, 6)
+        axs[2].set_title('Frequency domain: FFT of y = y - mean(y)')
+        axs[2].set_xlabel('Frequency [1/day]')
+        axs[2].set_ylabel('Amplitude')
+        axs[2].grid(True)
+
+        axs[3].plot(xf,yClean)
+        axs[3].set_xlim(0, 6)
+        axs[3].set_title('Frequency domain: FFT of y = y*window')
+        axs[3].set_xlabel('Frequency [1/day]')
+        axs[3].set_ylabel('Amplitude')
+        axs[3].grid(True)
+
+        plt.savefig('outputImage.png')
+
         fig.tight_layout()
-        fig.subplots_adjust(top=0.88)
+        fig.subplots_adjust(top=0.90)
         plt.show()

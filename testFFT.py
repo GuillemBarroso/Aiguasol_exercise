@@ -33,6 +33,8 @@ axs[1].set_xlabel('Frequency [Hz]')
 axs[1].set_ylabel('Amplitude')
 axs[1].grid(True)
 
+plt.savefig('outputImage_testFFT.png')
+
 fig.tight_layout()
 fig.subplots_adjust(top=0.88)
 plt.show()

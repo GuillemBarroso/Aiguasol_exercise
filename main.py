@@ -3,6 +3,7 @@ from ree_api        import ReeIndicatorAPI
 from FFTcomputation import FFT
 import argparse
 import numpy        as np
+import statistics
 
 indicatorID    = 1293
 start_date     = '2018-09-02'
@@ -22,9 +23,17 @@ TDvalues, dates = indicator.read(inputs, args.force)
 
 # Compute FFT
 x            = np.linspace(0.0, inputs.totalDays, len(dates))
-y            = np.array(TDvalues)
-fft          = FFT()
-x, y, xf, yf = fft.compute(x, y, inputs.totalDays)
+yRaw         = np.array(TDvalues)
+meanValue    = statistics.mean(yRaw)
+yNorm        = yRaw - meanValue
+
+window = np.hanning(yNorm.size)
+yClean = yNorm*window
+
+fft              = FFT()
+x, y, xf, yf     = fft.compute(x, yRaw, inputs.totalDays)
+x, y, xf, yNoPeak= fft.compute(x, yNorm, inputs.totalDays)
+x, y, xf, yClean = fft.compute(x, yClean, inputs.totalDays)
 
 # Plot solution
-fft.plot(x, y, xf, yf)
+fft.plot(x, yRaw, xf, yf, yNoPeak, yClean)
