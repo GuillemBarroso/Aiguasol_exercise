@@ -46,8 +46,7 @@ class FFT:
         axs[3].set_ylabel('Amplitude')
         axs[3].grid(True)
 
-        plt.savefig('outputImage.png')
-
         fig.tight_layout()
         fig.subplots_adjust(top=0.90)
+        plt.savefig('outputImage.png')
         plt.show()
